@@ -33,6 +33,7 @@ class CustomMethodSwizzler {
     }
     
     @objc dynamic private func customMethod(value: String, count: Int) {
+        customMethod(value: value, count: count)
         print("This is custom")
         
         let newValue = "Changed Text"
