@@ -8,10 +8,36 @@
 import Foundation
 
 class CustomMethodSwizzler {
-    
-    func swizzleMethods() {
-        
+    init() {
+        swizzleMethods()        
     }
     
-    private func original
+    private func swizzleMethods() {
+        
+        let originalSelector = #selector(originalMethod(value:count:))
+        let swizzledSelector = #selector(customMethod(value:count:))
+        
+        guard let originalMethod = class_getInstanceMethod(CustomMethodSwizzler.self,
+                                                           originalSelector),
+              let swizzledMethod = class_getInstanceMethod(CustomMethodSwizzler.self,
+                                                           swizzledSelector) else {
+            return
+        }
+        
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+    }
+    
+    @objc func originalMethod(value: String, count: Int) {
+        print("This is original")
+        print(" String: \(value)\n Int: \(String(count))")
+    }
+    
+    @objc private func customMethod(value: String, count: Int) {
+        print("This is custom")
+        
+        let newValue = "Changed Text"
+        let newCount = count + 1
+        
+        print(" String: \(newValue)\n Int: \(String(newCount))")
+    }
 }
