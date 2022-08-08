@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let swizzler = CustomMethodSwizzler()
-        swizzler.originalMethod(value: "Original", count: 1)
+//        swizzler.originalMethod(value: "Original", count: 1)
     }
 }
 

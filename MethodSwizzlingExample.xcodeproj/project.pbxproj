@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D356CAA28A127F500C730A8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9FDC4D28A1278D00E66964 /* NotificationCenter.framework */; };
 		8D9FDC4728A1099B00E66964 /* CustomMethodSwizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9FDC4628A1099B00E66964 /* CustomMethodSwizzler.swift */; };
+		8D9FDC4B28A1225600E66964 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9FDC4A28A1225600E66964 /* PushNotificationService.swift */; };
 		8DEF744128A107EA00C89C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEF744028A107EA00C89C41 /* AppDelegate.swift */; };
 		8DEF744328A107EA00C89C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEF744228A107EA00C89C41 /* SceneDelegate.swift */; };
 		8DEF744528A107EA00C89C41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEF744428A107EA00C89C41 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		8D9FDC4628A1099B00E66964 /* CustomMethodSwizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMethodSwizzler.swift; sourceTree = "<group>"; };
+		8D9FDC4A28A1225600E66964 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
+		8D9FDC4D28A1278D00E66964 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		8DEF743D28A107EA00C89C41 /* MethodSwizzlingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MethodSwizzlingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DEF744028A107EA00C89C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DEF744228A107EA00C89C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D356CAA28A127F500C730A8 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D9FDC4C28A1278D00E66964 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D9FDC4D28A1278D00E66964 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8DEF743428A107EA00C89C41 = {
 			isa = PBXGroup;
 			children = (
 				8DEF743F28A107EA00C89C41 /* MethodSwizzlingExample */,
 				8DEF743E28A107EA00C89C41 /* Products */,
+				8D9FDC4C28A1278D00E66964 /* Frameworks */,
+				C3938CEAB38899E46ABEED14 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,15 +74,23 @@
 			isa = PBXGroup;
 			children = (
 				8DEF744028A107EA00C89C41 /* AppDelegate.swift */,
-				8DEF744228A107EA00C89C41 /* SceneDelegate.swift */,
 				8DEF744428A107EA00C89C41 /* ViewController.swift */,
 				8D9FDC4628A1099B00E66964 /* CustomMethodSwizzler.swift */,
+				8D9FDC4A28A1225600E66964 /* PushNotificationService.swift */,
 				8DEF744628A107EA00C89C41 /* Main.storyboard */,
 				8DEF744928A107EB00C89C41 /* Assets.xcassets */,
 				8DEF744B28A107EB00C89C41 /* LaunchScreen.storyboard */,
 				8DEF744E28A107EB00C89C41 /* Info.plist */,
+				8DEF744228A107EA00C89C41 /* SceneDelegate.swift */,
 			);
 			path = MethodSwizzlingExample;
+			sourceTree = "<group>";
+		};
+		C3938CEAB38899E46ABEED14 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DEF744528A107EA00C89C41 /* ViewController.swift in Sources */,
+				8D9FDC4B28A1225600E66964 /* PushNotificationService.swift in Sources */,
 				8DEF744128A107EA00C89C41 /* AppDelegate.swift in Sources */,
 				8DEF744328A107EA00C89C41 /* SceneDelegate.swift in Sources */,
 				8D9FDC4728A1099B00E66964 /* CustomMethodSwizzler.swift in Sources */,
@@ -291,7 +315,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CDVQN43CHN;
+				DEVELOPMENT_TEAM = PF6H25YRMP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MethodSwizzlingExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -304,7 +328,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.madbrains.RetailRocketPushSDK.MethodSwizzlingExample;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.madbrains.MethodSwizzlingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -319,7 +343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CDVQN43CHN;
+				DEVELOPMENT_TEAM = PF6H25YRMP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MethodSwizzlingExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -332,7 +356,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.madbrains.RetailRocketPushSDK.MethodSwizzlingExample;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.madbrains.MethodSwizzlingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

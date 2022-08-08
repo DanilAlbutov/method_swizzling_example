@@ -8,12 +8,12 @@
 import Foundation
 
 class CustomMethodSwizzler {
+    
     init() {
         swizzleMethods()        
     }
     
     private func swizzleMethods() {
-        
         let originalSelector = #selector(originalMethod(value:count:))
         let swizzledSelector = #selector(customMethod(value:count:))
         
@@ -28,17 +28,17 @@ class CustomMethodSwizzler {
     }
     
     @objc dynamic func originalMethod(value: String, count: Int) {
-        print("This is original")
-        print(" String: \(value)\n Int: \(String(count))")
+        print("This is original()")
+        print("  String: \(value)\n  Int: \(String(count))")
     }
     
     @objc dynamic private func customMethod(value: String, count: Int) {
         customMethod(value: value, count: count)
-        print("This is custom")
+        print("This is custom()")
         
         let newValue = "Changed Text"
         let newCount = count + 1
         
-        print(" String: \(newValue)\n Int: \(String(newCount))")
+        print("  String: \(newValue)\n  Int: \(String(newCount))")
     }
 }
