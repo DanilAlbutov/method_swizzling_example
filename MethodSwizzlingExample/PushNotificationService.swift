@@ -7,18 +7,52 @@
 
 import Foundation
 import NotificationCenter
-protocol PushNotificationServiceDelegate {
-    
-}
+
+typealias OriginalImplementationMethodType = @convention(c) (AnyObject, Selector, UNUserNotificationCenter, UNNotification, @escaping (UNNotificationPresentationOptions) -> Void) -> Void
 
 class PushNotificationService {
     
     static let shared = PushNotificationService()
-    
-    var delegate: PushNotificationServiceDelegate?
+    static var originalMethodImplementation: OriginalImplementationMethodType?
     
     func configure() {
         swizzleWillPresentRemoteNotification()
+    }
+    
+    @objc dynamic func customWillPresent(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        PushNotificationService.callOriginalMethod(center,
+                                                   willPresent: notification,
+                                                   withCompletionHandler: completionHandler)
+        
+        print("willPresent() from Service")
+        
+        guard let text = notification.request.content.userInfo["userInfo"] else {
+            return
+        }
+        
+        let modifiedText = "modified: \(text)"
+        
+        print(modifiedText)
+    }
+    
+    class func callOriginalMethod(_ center: UNUserNotificationCenter,
+                                  willPresent notification: UNNotification,
+                                  withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        guard let UnUserNotificationCenterClass = object_getClass(UNUserNotificationCenter.current().delegate) else {
+            return
+        }
+        
+        let originalSelector = #selector(
+            UNUserNotificationCenter.current().delegate?.userNotificationCenter(_:willPresent:withCompletionHandler:)
+        )
+        
+        if let originalMethod = PushNotificationService.originalMethodImplementation {
+            originalMethod(UnUserNotificationCenterClass, originalSelector, center, notification, completionHandler)
+        }
     }
     
     private func swizzleWillPresentRemoteNotification() {
@@ -35,25 +69,20 @@ class PushNotificationService {
             return
         }
         
+        saveMethod(method: originalMethod)
+                
         method_exchangeImplementations(originalMethod, swizzledMethod)
     }
     
-    @objc func customWillPresent(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
-        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
-    ) {
-        customWillPresent(center, willPresent: notification, withCompletionHandler: completionHandler)
+    private func saveMethod(method: Method) {
+        let originalImplementation = method_getImplementation(method)
         
-        print("willPresent() from Service")
+        guard let originalMethodImplementation = unsafeBitCast(
+            originalImplementation,
+            to: OriginalImplementationMethodType?.self
+        ) else { return }
         
-        guard let text = notification.request.content.userInfo["userInfo"] else {
-            return
-        }
-        
-        let modifiedText = "modified: \(text)"
-        
-        print(modifiedText)
+        PushNotificationService.originalMethodImplementation = originalMethodImplementation
     }
     
 }
