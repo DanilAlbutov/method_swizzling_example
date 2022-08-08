@@ -27,12 +27,12 @@ class CustomMethodSwizzler {
         method_exchangeImplementations(originalMethod, swizzledMethod)
     }
     
-    @objc func originalMethod(value: String, count: Int) {
+    @objc dynamic func originalMethod(value: String, count: Int) {
         print("This is original")
         print(" String: \(value)\n Int: \(String(count))")
     }
     
-    @objc private func customMethod(value: String, count: Int) {
+    @objc dynamic private func customMethod(value: String, count: Int) {
         print("This is custom")
         
         let newValue = "Changed Text"
