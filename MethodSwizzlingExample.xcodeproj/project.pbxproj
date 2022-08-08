@@ -58,7 +58,6 @@
 				8DEF743F28A107EA00C89C41 /* MethodSwizzlingExample */,
 				8DEF743E28A107EA00C89C41 /* Products */,
 				8D9FDC4C28A1278D00E66964 /* Frameworks */,
-				C3938CEAB38899E46ABEED14 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,13 +83,6 @@
 				8DEF744228A107EA00C89C41 /* SceneDelegate.swift */,
 			);
 			path = MethodSwizzlingExample;
-			sourceTree = "<group>";
-		};
-		C3938CEAB38899E46ABEED14 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

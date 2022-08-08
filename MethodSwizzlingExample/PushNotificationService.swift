@@ -43,6 +43,8 @@ class PushNotificationService {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
+        customWillPresent(center, willPresent: notification, withCompletionHandler: completionHandler)
+        
         print("willPresent() from Service")
         
         guard let text = notification.request.content.userInfo["userInfo"] else {
