@@ -10,8 +10,18 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let swizzler = CustomMethodSwizzler()
-        swizzler.originalMethod(value: "Original", count: 1)
+        CustomMethodSwizzler().originalMethod(value: "Original1", count: 1)
+        print("------")
+        
+        CustomMethodSwizzler().originalMethod(value: "Original2", count: 2)
+        print("------")
+        
+        CustomMethodSwizzler().originalMethod(value: "Original3", count: 3)
+        print("------")
+        
+        CustomMethodSwizzler().originalMethod(value: "Original4", count: 4)
+        print("------")
+        
     }
 }
 

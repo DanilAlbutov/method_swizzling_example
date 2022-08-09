@@ -8,8 +8,14 @@
 import Foundation
 
 class CustomMethodSwizzler {
+    
+    private static var isOnce = true
+    
     init() {
-        swizzleMethods()        
+        if CustomMethodSwizzler.isOnce {
+            swizzleMethods()
+            CustomMethodSwizzler.isOnce = false
+        }
     }
     
     private func swizzleMethods() {
@@ -36,9 +42,9 @@ class CustomMethodSwizzler {
         customMethod(value: value, count: count)
         print("This is custom")
         
-        let newValue = "Changed Text"
+        let newValue = "[modified] \(value)"
         let newCount = count + 1
         
-        print(" String: \(newValue)\n Int: \(String(newCount))")
+        print(" String: \(newValue)\n Int: [modified] \(String(newCount))")
     }
 }
