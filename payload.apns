@@ -1,0 +1,11 @@
+{
+  "Simulator Target Bundle": "ru.madbrains.MethodSwizzlingExample",
+  "aps" : {
+    "alert" : {
+      "title" : "Default title",
+      "body" : "Default body"
+    },
+    "mutable-content" : false
+  },
+  "userInfo": "Text from push"
+}
